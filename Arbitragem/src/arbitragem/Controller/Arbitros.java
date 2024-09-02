@@ -33,9 +33,10 @@ public class Arbitros {
     }
     
     public static void edit(int id, Arbitro_DAO arbitro) {
+        System.out.println(arbitros.size());
         for (int i = 0; i < arbitros.size(); i++) {
             if (arbitros.get(i).id == id) {
-                arbitros.set(id, arbitro);
+                arbitros.set(i, arbitro);
             }
         }
     }

@@ -254,9 +254,9 @@ public class Home_View extends javax.swing.JFrame {
         int selected = table.getSelectedRow();
         if (selected != -1) { // Verificar se uma linha está realmente selecionada
             // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
-            int selectedColumnIndex = 1;
-            int value = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
-            JOptionPane.showMessageDialog(this, "Id: " + value);
+            int selectedColumnIndex = 0;
+            int id = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            new EditarArbitro_View(this, id).setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
         }
