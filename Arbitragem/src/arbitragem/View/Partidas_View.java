@@ -28,7 +28,7 @@ public class Partidas_View extends javax.swing.JFrame {
     
     public void refresh() {
         List<Partida_DAO> partidas = Partidas.getAll();
-        String[] columnNames = {"Id", "Nome", "Sobrenome", "Série", "Esporte"};
+        String[] columnNames = {"Id", "Local", "Esporte", "Data", "Horário", "Times"};
         Object[][] data = new Object[partidas.size()][columnNames.length];
         for (int i = 0; i < partidas.size(); i++) {
             Partida_DAO partida = partidas.get(i);
@@ -37,7 +37,7 @@ public class Partidas_View extends javax.swing.JFrame {
             data[i][2] = partida.esporte;
             data[i][3] = partida.data;
             data[i][4] = partida.hora;
-            data[i][4] = partida.timeA + " x " + partida.timeB;
+            data[i][5] = partida.timeA + " x " + partida.timeB;
             System.out.println(partida.id);
         }
         DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
@@ -186,6 +186,11 @@ public class Partidas_View extends javax.swing.JFrame {
 
         editarBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         editarBtn.setText("Editar");
+        editarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarBtnActionPerformed(evt);
+            }
+        });
         cadastrarBtn.add(editarBtn);
 
         deletarBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -245,6 +250,16 @@ public class Partidas_View extends javax.swing.JFrame {
 
     private void verBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verBtnActionPerformed
         // TODO add your handling code here:
+        int selected = table.getSelectedRow();
+        if (selected != -1) { // Verificar se uma linha está realmente selecionada
+            // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
+            int selectedColumnIndex = 0;
+            int id = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            new ViewPartida_View(id).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
+        }
+   
     }//GEN-LAST:event_verBtnActionPerformed
 
     private void partidasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidasBtnActionPerformed
@@ -256,6 +271,19 @@ public class Partidas_View extends javax.swing.JFrame {
         setVisible(false);
         new Home_View().setVisible(true);
     }//GEN-LAST:event_arbitrosBtnActionPerformed
+
+    private void editarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBtnActionPerformed
+            // TODO add your handling code here:
+        int selected = table.getSelectedRow();
+        if (selected != -1) { // Verificar se uma linha está realmente selecionada
+            // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
+            int selectedColumnIndex = 0;
+            int id = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            new EditarPartida_View(this, id).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
+        }
+    }//GEN-LAST:event_editarBtnActionPerformed
 
     /**
      * @param args the command line arguments

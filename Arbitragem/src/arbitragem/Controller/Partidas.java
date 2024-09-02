@@ -35,7 +35,7 @@ public class Partidas {
     public static void edit(int id, Partida_DAO arbitro) {
         for (int i = 0; i < partidas.size(); i++) {
             if (partidas.get(i).id == id) {
-                partidas.set(id, arbitro);
+                partidas.set(i, arbitro);
             }
         }
     }

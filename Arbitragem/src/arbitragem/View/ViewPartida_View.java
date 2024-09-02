@@ -4,17 +4,42 @@
  */
 package arbitragem.View;
 
+import arbitragem.Controller.Partidas;
+import arbitragem.Model.Partida_DAO;
+
 /**
  *
  * @author guiespim
  */
 public class ViewPartida_View extends javax.swing.JFrame {
 
+    private int id;
+    
     /**
      * Creates new form ViewPartida_View
      */
     public ViewPartida_View() {
         initComponents();
+    }
+    
+    public ViewPartida_View(int id) {
+        initComponents();
+        this.id = id;
+        populate();
+    }
+    
+    public void populate() {
+        Partida_DAO partida = Partidas.getOne(id);
+        data.setText(partida.data);
+        hora.setText(partida.hora);
+        local.setText(partida.local);
+        serie.setText(partida.serie);
+        esporte.setText(partida.esporte);
+        timeA.setText(partida.timeA);
+        timeB.setText(partida.timeB);
+        duracao.setText(partida.duracao);
+        tipo.setText(partida.tipo);
+        fase.setText(partida.fase);
     }
 
     /**
@@ -29,27 +54,25 @@ public class ViewPartida_View extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        data = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        hora = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        local = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        serie = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        esporte = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        timeA = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        timeB = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        duracao = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        tipo = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        fase = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(240, 240, 240));
 
@@ -60,81 +83,81 @@ public class ViewPartida_View extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Data:");
 
-        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText(" ");
+        data.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        data.setForeground(new java.awt.Color(51, 51, 51));
+        data.setText(" ");
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Hora:");
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setText(" ");
+        hora.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        hora.setForeground(new java.awt.Color(51, 51, 51));
+        hora.setText(" ");
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Email:");
+        jLabel6.setText("Local");
 
-        jLabel7.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setText(" ");
+        local.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        local.setForeground(new java.awt.Color(51, 51, 51));
+        local.setText(" ");
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Série:");
 
-        jLabel9.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel9.setText(" ");
+        serie.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        serie.setForeground(new java.awt.Color(51, 51, 51));
+        serie.setText(" ");
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Esporte:");
 
-        jLabel11.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel11.setText(" ");
+        esporte.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        esporte.setForeground(new java.awt.Color(51, 51, 51));
+        esporte.setText(" ");
 
         jLabel12.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 51, 51));
         jLabel12.setText("Time A:");
 
-        jLabel13.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel13.setText(" ");
+        timeA.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        timeA.setForeground(new java.awt.Color(51, 51, 51));
+        timeA.setText(" ");
 
         jLabel14.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setText("Time B:");
 
-        jLabel15.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel15.setText(" ");
+        timeB.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        timeB.setForeground(new java.awt.Color(51, 51, 51));
+        timeB.setText(" ");
 
         jLabel16.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(51, 51, 51));
         jLabel16.setText("Duração:");
 
-        jLabel17.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel17.setText(" ");
+        duracao.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        duracao.setForeground(new java.awt.Color(51, 51, 51));
+        duracao.setText(" ");
 
         jLabel18.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(51, 51, 51));
         jLabel18.setText("Tipo:");
 
-        jLabel19.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel19.setText(" ");
+        tipo.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        tipo.setForeground(new java.awt.Color(51, 51, 51));
+        tipo.setText(" ");
 
         jLabel20.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(51, 51, 51));
         jLabel20.setText("Fase:");
 
-        jLabel21.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel21.setText(" ");
+        fase.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        fase.setForeground(new java.awt.Color(51, 51, 51));
+        fase.setText(" ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -147,43 +170,43 @@ public class ViewPartida_View extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
+                        .addComponent(data))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5))
+                        .addComponent(hora))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
+                        .addComponent(local))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel9))
+                        .addComponent(serie))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel11))
+                        .addComponent(esporte))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel13))
+                        .addComponent(timeA))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15))
+                        .addComponent(timeB))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel17))
+                        .addComponent(duracao))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel19))
+                        .addComponent(tipo))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel21)))
+                        .addComponent(fase)))
                 .addContainerGap(320, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -194,44 +217,44 @@ public class ViewPartida_View extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(data))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(hora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(local))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                    .addComponent(serie))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel11))
+                    .addComponent(esporte))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jLabel13))
+                    .addComponent(timeA))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(jLabel15))
+                    .addComponent(timeB))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17))
+                    .addComponent(duracao))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
-                    .addComponent(jLabel19))
+                    .addComponent(tipo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jLabel21))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(fase))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -242,7 +265,9 @@ public class ViewPartida_View extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -284,27 +309,27 @@ public class ViewPartida_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel data;
+    private javax.swing.JLabel duracao;
+    private javax.swing.JLabel esporte;
+    private javax.swing.JLabel fase;
+    private javax.swing.JLabel hora;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel local;
+    private javax.swing.JLabel serie;
+    private javax.swing.JLabel timeA;
+    private javax.swing.JLabel timeB;
+    private javax.swing.JLabel tipo;
     // End of variables declaration//GEN-END:variables
 }

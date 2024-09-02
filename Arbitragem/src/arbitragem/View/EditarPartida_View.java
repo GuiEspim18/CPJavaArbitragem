@@ -9,22 +9,39 @@ import arbitragem.Model.Partida_DAO;
 
 /**
  *
- * @author guiespim
+ * @author labsfiap
  */
-public class AddPartida_View extends javax.swing.JFrame {
+public class EditarPartida_View extends javax.swing.JFrame {
     
+    private int id;
     private Partidas_View partidasView;
 
     /**
-     * Creates new form AddPartida_View
+     * Creates new form EditarPartida_View
      */
-    public AddPartida_View() {
+    public EditarPartida_View() {
         initComponents();
     }
     
-    public AddPartida_View(Partidas_View partidasView) {
+    public EditarPartida_View(Partidas_View partidasView, int id) {
         initComponents();
+        this.id = id;
         this.partidasView = partidasView;
+        populate();
+    }
+    
+    public void populate() {
+        Partida_DAO partida = Partidas.getOne(id);
+        data.setText(partida.data);
+        hora.setText(partida.hora);
+        local.setText(partida.local);
+        serie.setSelectedItem(partida.serie);
+        esporte.setText(partida.esporte);
+        timeA.setText(partida.timeA);
+        timeB.setText(partida.timeB);
+        duracao.setText(partida.duracao);
+        tipo.setSelectedItem(partida.tipo);
+        fase.setSelectedItem(partida.fase);
     }
 
     /**
@@ -59,8 +76,6 @@ public class AddPartida_View extends javax.swing.JFrame {
         fase = new javax.swing.JComboBox<>();
         adicionarBtn = new javax.swing.JButton();
         tipo = new javax.swing.JComboBox<>();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(240, 240, 240));
 
@@ -112,7 +127,7 @@ public class AddPartida_View extends javax.swing.JFrame {
         fase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Grupos", "Oitavas de final", "Quartas de final", "Semi final", "Final", "Terceiro lugar" }));
         fase.setToolTipText("");
 
-        adicionarBtn.setText("Adicionar");
+        adicionarBtn.setText("Editar");
         adicionarBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarBtnActionPerformed(evt);
@@ -225,7 +240,7 @@ public class AddPartida_View extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(fase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(adicionarBtn)
                 .addContainerGap())
         );
@@ -234,7 +249,9 @@ public class AddPartida_View extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,8 +263,8 @@ public class AddPartida_View extends javax.swing.JFrame {
 
     private void adicionarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarBtnActionPerformed
         // TODO add your handling code here:
-        Partida_DAO partida = new Partida_DAO(Partidas.getAll().size() + 1, data.getText(), hora.getText(), local.getText(), serie.getSelectedItem().toString(), esporte.getText(), timeA.getText(), timeB.getText(), duracao.getText(), tipo.getSelectedItem().toString(), fase.getSelectedItem().toString());
-        Partidas.add(partida);
+        Partida_DAO partida = new Partida_DAO(id, data.getText(), hora.getText(), local.getText(), serie.getSelectedItem().toString(), esporte.getText(), timeA.getText(), timeB.getText(), duracao.getText(), tipo.getSelectedItem().toString(), fase.getSelectedItem().toString());
+        Partidas.edit(id, partida);
         setVisible(false);
         partidasView.refresh();
     }//GEN-LAST:event_adicionarBtnActionPerformed
@@ -269,20 +286,20 @@ public class AddPartida_View extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditarPartida_View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPartida_View().setVisible(true);
+                new EditarPartida_View().setVisible(true);
             }
         });
     }
