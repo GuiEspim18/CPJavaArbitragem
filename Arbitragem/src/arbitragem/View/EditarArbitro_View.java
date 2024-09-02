@@ -75,8 +75,6 @@ public class EditarArbitro_View extends javax.swing.JFrame {
         status = new javax.swing.JComboBox<>();
         adicionar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(240, 240, 240));
 
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));

@@ -234,10 +234,29 @@ public class Home_View extends javax.swing.JFrame {
 
     private void deletarOptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarOptActionPerformed
         // TODO add your handling code here:
+        int selected = table.getSelectedRow();
+        if (selected != -1) { // Verificar se uma linha está realmente selecionada
+            // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
+            int selectedColumnIndex = 0;
+            int id = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            Arbitros.delete(id);
+            refresh();
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
+        }
     }//GEN-LAST:event_deletarOptActionPerformed
 
     private void verOptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verOptActionPerformed
         // TODO add your handling code here:
+            int selected = table.getSelectedRow();
+        if (selected != -1) { // Verificar se uma linha está realmente selecionada
+            // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
+            int selectedColumnIndex = 0;
+            int id = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            new ViewArbitro_View(id).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
+        }
     }//GEN-LAST:event_verOptActionPerformed
 
     private void arbitrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arbitrosBtnActionPerformed
