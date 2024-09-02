@@ -14,25 +14,25 @@ import java.util.ArrayList;
  */
 public class Partidas {
     
-    private List<Partida_DAO> partidas = new ArrayList<>();
+    private static List<Partida_DAO> partidas = new ArrayList<>();
     
-    public void add(Partida_DAO partida) {
+    public static void add(Partida_DAO partida) {
         partidas.add(partida);
     }
     
-    public List<Partida_DAO> getAll() {
+    public static List<Partida_DAO> getAll() {
         return partidas;
     }
     
-    public Partida_DAO getOne(int id) {
+    public static Partida_DAO getOne(int id) {
         return partidas.stream().filter(a -> a.id == id).findFirst().orElse(null);
     }
     
-    public void delete(int id) {
+    public static void delete(int id) {
         partidas.removeIf(a -> a.id == id);
     }
     
-    public void edit(int id, Partida_DAO arbitro) {
+    public static void edit(int id, Partida_DAO arbitro) {
         for (int i = 0; i < partidas.size(); i++) {
             if (partidas.get(i).id == id) {
                 partidas.set(id, arbitro);

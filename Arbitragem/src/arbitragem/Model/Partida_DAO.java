@@ -13,7 +13,7 @@ import java.util.Date;
 public class Partida_DAO {
     
     public int id;
-    public Date data;
+    public String data;
     public String hora;
     public String email;
     public String serie;
@@ -27,7 +27,7 @@ public class Partida_DAO {
     public Partida_DAO() {
     }
 
-    public Partida_DAO(int id, Date data, String hora, String email, String serie, String esporte, String timeA, String timeB, String duracao, String tipo, String fase) {
+    public Partida_DAO(int id, String data, String hora, String email, String serie, String esporte, String timeA, String timeB, String duracao, String tipo, String fase) {
         this.id = id;
         this.data = data;
         this.hora = hora;
