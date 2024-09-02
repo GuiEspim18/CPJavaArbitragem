@@ -14,25 +14,25 @@ import java.util.ArrayList;
  */
 public class Arbitros {
     
-    private List<Arbitro_DAO> arbitros = new ArrayList<Arbitro_DAO>();
+    private static List<Arbitro_DAO> arbitros = new ArrayList<Arbitro_DAO>();
            
-    public void add(Arbitro_DAO arbitro) {
+    public static void add(Arbitro_DAO arbitro) {
         arbitros.add(arbitro);
     }
     
-    public List<Arbitro_DAO> getAll() {
+    public static List<Arbitro_DAO> getAll() {
         return arbitros;
     }
     
-    public Arbitro_DAO getOne(int id) {
+    public static Arbitro_DAO getOne(int id) {
         return arbitros.stream().filter(a -> a.id == id).findFirst().orElse(null);
     }
     
-    public void delete(int id) {
+    public static void delete(int id) {
         arbitros.removeIf(a -> a.id == id);
     }
     
-    public void edit(int id, Arbitro_DAO arbitro) {
+    public static void edit(int id, Arbitro_DAO arbitro) {
         for (int i = 0; i < arbitros.size(); i++) {
             if (arbitros.get(i).id == id) {
                 arbitros.set(id, arbitro);

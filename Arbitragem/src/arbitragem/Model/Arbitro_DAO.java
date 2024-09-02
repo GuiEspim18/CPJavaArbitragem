@@ -16,7 +16,6 @@ public class Arbitro_DAO {
     public String email;
     public String serie;
     public String esporte;
-    public String dataNascimento;
     public String experiencia;
     public String telefone;
     public String estado;
@@ -25,14 +24,13 @@ public class Arbitro_DAO {
     public Arbitro_DAO() {
     }
 
-    public Arbitro_DAO(int id, String nome, String sobrenome, String email, String serie, String esporte, String dataNascimento, String experiencia, String telefone, String estado, String status) {
+    public Arbitro_DAO(int id, String nome, String sobrenome, String email, String serie, String esporte, String experiencia, String telefone, String estado, String status) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.serie = serie;
         this.esporte = esporte;
-        this.dataNascimento = dataNascimento;
         this.experiencia = experiencia;
         this.telefone = telefone;
         this.estado = estado;

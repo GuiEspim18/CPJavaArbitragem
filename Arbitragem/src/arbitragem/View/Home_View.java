@@ -4,6 +4,13 @@
  */
 package arbitragem.View;
 
+import arbitragem.Controller.Arbitros;
+import arbitragem.Model.Arbitro_DAO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author guiespim
@@ -15,6 +22,24 @@ public class Home_View extends javax.swing.JFrame {
      */
     public Home_View() {
         initComponents();
+        refresh();
+    }
+    
+    public void refresh() {
+        List<Arbitro_DAO> arbitros = Arbitros.getAll();
+        String[] columnNames = {"Id", "Nome", "Sobrenome", "Série", "Esporte"};
+        Object[][] data = new Object[arbitros.size()][columnNames.length];
+        for (int i = 0; i < arbitros.size(); i++) {
+            Arbitro_DAO arbitro = arbitros.get(i);
+            data[i][0] = arbitro.id;
+            data[i][1] = arbitro.nome;
+            data[i][2] = arbitro.sobrenome;
+            data[i][3] = arbitro.serie;
+            data[i][4] = arbitro.esporte;
+            System.out.println(arbitro.id);
+        }
+        DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
+        table.setModel(tableModel);
     }
 
     /**
@@ -28,18 +53,18 @@ public class Home_View extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        arbitrosBtn = new javax.swing.JButton();
+        partidasBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuOpts = new javax.swing.JMenu();
+        cadastrarOpt = new javax.swing.JMenuItem();
+        editarOpt = new javax.swing.JMenuItem();
+        deletarOpt = new javax.swing.JMenuItem();
+        verOpt = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,9 +72,19 @@ public class Home_View extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton1.setText("Arbitros");
+        arbitrosBtn.setText("Arbitros");
+        arbitrosBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arbitrosBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Partidas");
+        partidasBtn.setText("Partidas");
+        partidasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                partidasBtnActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -80,8 +115,8 @@ public class Home_View extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(arbitrosBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(partidasBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -90,32 +125,32 @@ public class Home_View extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(arbitrosBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(partidasBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Sobrenome", "Série", "Esporte"
+                "Id", "Nome", "Sobrenome", "Série", "Esporte"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,40 +171,45 @@ public class Home_View extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setForeground(new java.awt.Color(51, 51, 51));
 
-        jMenu1.setText("Arbitros");
+        menuOpts.setText("Arbitros");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setText("Cadastrar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarOpt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        cadastrarOpt.setText("Cadastrar");
+        cadastrarOpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                cadastrarOptActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        menuOpts.add(cadastrarOpt);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem2.setText("Editar");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem3.setText("Deletar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        editarOpt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        editarOpt.setText("Editar");
+        editarOpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                editarOptActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        menuOpts.add(editarOpt);
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem4.setText("Ver");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        deletarOpt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        deletarOpt.setText("Deletar");
+        deletarOpt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                deletarOptActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        menuOpts.add(deletarOpt);
 
-        jMenuBar1.add(jMenu1);
+        verOpt.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        verOpt.setText("Ver");
+        verOpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verOptActionPerformed(evt);
+            }
+        });
+        menuOpts.add(verOpt);
+
+        jMenuBar1.add(menuOpts);
 
         setJMenuBar(jMenuBar1);
 
@@ -187,17 +227,40 @@ public class Home_View extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void cadastrarOptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarOptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        new AddArbitro_View(this).setVisible(true);
+    }//GEN-LAST:event_cadastrarOptActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void deletarOptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarOptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_deletarOptActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void verOptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verOptActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_verOptActionPerformed
+
+    private void arbitrosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arbitrosBtnActionPerformed
+
+    }//GEN-LAST:event_arbitrosBtnActionPerformed
+
+    private void partidasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_partidasBtnActionPerformed
+        setVisible(false);
+        new Partidas_View().setVisible(true);
+    }//GEN-LAST:event_partidasBtnActionPerformed
+
+    private void editarOptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarOptActionPerformed
+        // TODO add your handling code here:
+        int selected = table.getSelectedRow();
+        if (selected != -1) { // Verificar se uma linha está realmente selecionada
+            // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
+            int selectedColumnIndex = 1;
+            int value = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            JOptionPane.showMessageDialog(this, "Id: " + value);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
+        }
+    }//GEN-LAST:event_editarOptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -235,19 +298,19 @@ public class Home_View extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton arbitrosBtn;
+    private javax.swing.JMenuItem cadastrarOpt;
+    private javax.swing.JMenuItem deletarOpt;
+    private javax.swing.JMenuItem editarOpt;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JMenu menuOpts;
+    private javax.swing.JButton partidasBtn;
+    private javax.swing.JTable table;
+    private javax.swing.JMenuItem verOpt;
     // End of variables declaration//GEN-END:variables
 }
