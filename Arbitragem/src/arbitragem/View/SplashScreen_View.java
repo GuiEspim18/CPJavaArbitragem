@@ -43,7 +43,7 @@ public class SplashScreen_View extends javax.swing.JFrame {
 
                             sleep(100);
 
-                            new Home_View().setVisible(true);
+                            new Login_View().setVisible(true);
                             setVisible(false);
                             }
 
