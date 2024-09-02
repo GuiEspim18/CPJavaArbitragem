@@ -247,7 +247,9 @@ public class AddPartida_View extends javax.swing.JFrame {
     private void adicionarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarBtnActionPerformed
         // TODO add your handling code here:
         Partida_DAO partida = new Partida_DAO(Partidas.getAll().size() + 1, data.getText(), hora.getText(), local.getText(), serie.getSelectedItem().toString(), esporte.getText(), timeA.getText(), timeB.getText(), duracao.getText(), tipo.getSelectedItem().toString(), fase.getSelectedItem().toString());
-        
+        Partidas.add(partida);
+        setVisible(false);
+        partidasView.refresh();
     }//GEN-LAST:event_adicionarBtnActionPerformed
 
     /**

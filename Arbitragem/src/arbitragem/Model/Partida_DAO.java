@@ -15,7 +15,7 @@ public class Partida_DAO {
     public int id;
     public String data;
     public String hora;
-    public String email;
+    public String local;
     public String serie;
     public String esporte;
     public String timeA;
@@ -27,11 +27,11 @@ public class Partida_DAO {
     public Partida_DAO() {
     }
 
-    public Partida_DAO(int id, String data, String hora, String email, String serie, String esporte, String timeA, String timeB, String duracao, String tipo, String fase) {
+    public Partida_DAO(int id, String data, String hora, String local, String serie, String esporte, String timeA, String timeB, String duracao, String tipo, String fase) {
         this.id = id;
         this.data = data;
         this.hora = hora;
-        this.email = email;
+        this.local = local;
         this.serie = serie;
         this.esporte = esporte;
         this.timeA = timeA;

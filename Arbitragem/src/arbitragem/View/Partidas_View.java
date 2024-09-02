@@ -4,6 +4,14 @@
  */
 package arbitragem.View;
 
+import arbitragem.Controller.Arbitros;
+import arbitragem.Controller.Partidas;
+import arbitragem.Model.Arbitro_DAO;
+import arbitragem.Model.Partida_DAO;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author guiespim
@@ -15,6 +23,25 @@ public class Partidas_View extends javax.swing.JFrame {
      */
     public Partidas_View() {
         initComponents();
+        refresh();
+    }
+    
+    public void refresh() {
+        List<Partida_DAO> partidas = Partidas.getAll();
+        String[] columnNames = {"Id", "Nome", "Sobrenome", "Série", "Esporte"};
+        Object[][] data = new Object[partidas.size()][columnNames.length];
+        for (int i = 0; i < partidas.size(); i++) {
+            Partida_DAO partida = partidas.get(i);
+            data[i][0] = partida.id;
+            data[i][1] = partida.local;
+            data[i][2] = partida.esporte;
+            data[i][3] = partida.data;
+            data[i][4] = partida.hora;
+            data[i][4] = partida.timeA + " x " + partida.timeB;
+            System.out.println(partida.id);
+        }
+        DefaultTableModel tableModel = new DefaultTableModel(data, columnNames);
+        table.setModel(tableModel);
     }
 
     /**
@@ -33,7 +60,7 @@ public class Partidas_View extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         cadastrarBtn = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -106,26 +133,26 @@ public class Partidas_View extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Local", "Esporte", "Data", "Horário", "Times"
+                "Id", "Local", "Esporte", "Data", "Horário", "Times"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,10 +226,21 @@ public class Partidas_View extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        new AddPartida_View(this).setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void deletarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletarBtnActionPerformed
         // TODO add your handling code here:
+        int selected = table.getSelectedRow();
+        if (selected != -1) { // Verificar se uma linha está realmente selecionada
+            // Supondo que você quer obter o valor da coluna "Idade" (índice 1)
+            int selectedColumnIndex = 0;
+            int id = Integer.parseInt(table.getValueAt(selected, selectedColumnIndex).toString());
+            Partidas.delete(id);
+            refresh();
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma linha selecionada.");
+        }
     }//GEN-LAST:event_deletarBtnActionPerformed
 
     private void verBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verBtnActionPerformed
@@ -266,8 +304,8 @@ public class Partidas_View extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton partidasBtn;
+    private javax.swing.JTable table;
     private javax.swing.JMenuItem verBtn;
     // End of variables declaration//GEN-END:variables
 }
