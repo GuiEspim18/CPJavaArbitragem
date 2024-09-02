@@ -53,6 +53,7 @@ public class Partidas_View extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
+        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
         jLabel1.setText("Arbitragem");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

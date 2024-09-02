@@ -14,6 +14,51 @@ public class SplashScreen_View extends javax.swing.JFrame {
     /** Creates new form SplashScreen */
     public SplashScreen_View() {
         initComponents();
+         new Thread(){
+        
+            public void run() {
+        
+        
+            for (int i=0; i<101; i++){
+                        try {
+                            sleep(60); 
+
+                            progress.setValue(i);
+
+                            if(progress.getValue() == 10){
+
+                                message.setText("Fazendo a conexao com o banco de dados");
+//                                driver_conexao.carregardriver();
+                                sleep(100);
+
+
+                            }else if (progress.getValue() <=30){
+                                message.setText("Carregando o sistema");
+                              sleep(50);  
+                            } else if (progress.getValue() <=99){
+                                message.setText("Carregamento quase completo");
+
+                            }else{
+                                message.setText("Carregamento completo. Seu programa sera iniciado.");
+
+                            sleep(100);
+
+                            new Home_View().setVisible(true);
+                            setVisible(false);
+                            }
+
+
+                        } catch (InterruptedException ex) {
+//                            Logger.getLogger(SplashScreen_View.class.getName()).log(Level.SERVE, null, ex);
+                        }
+
+
+
+
+            }        
+        }
+        
+        }.start();
     }
 
     /** This method is called from within the constructor to
@@ -31,6 +76,7 @@ public class SplashScreen_View extends javax.swing.JFrame {
         title = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(240, 240, 240));
 
@@ -80,7 +126,8 @@ public class SplashScreen_View extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        pack();
+        setSize(new java.awt.Dimension(400, 302));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     /**

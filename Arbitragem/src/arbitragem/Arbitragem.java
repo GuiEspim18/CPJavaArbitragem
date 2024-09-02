@@ -4,6 +4,8 @@
  */
 package arbitragem;
 
+import arbitragem.View.SplashScreen_View;
+
 /**
  *
  * @author guiespim
@@ -14,7 +16,7 @@ public class Arbitragem {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new SplashScreen_View().setVisible(true);
     }
     
 }
